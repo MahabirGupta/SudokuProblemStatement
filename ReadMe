@@ -1,0 +1,10 @@
+How to Run (Mac)
+javac *.java
+java Main
+
+
+For tests:
+
+# add junit jar
+javac -cp .:junit-4.13.2.jar *.java
+java -cp .:junit-4.13.2.jar org.junit.runner.JUnitCore ValidatorTest
