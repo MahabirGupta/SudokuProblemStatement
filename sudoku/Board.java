@@ -3,7 +3,7 @@ package sudoku;
 public class Board {
 
     private final Cell[][] grid = new Cell[9][9];
-    private int[][] solution; // create a 2 dimensional array
+    private int[][] solution;
 
     public void initialize() {
         int[][] puzzle = {
@@ -16,7 +16,7 @@ public class Board {
                 {0,6,0,0,0,0,2,8,0},
                 {0,0,0,4,1,9,0,0,5},
                 {0,0,0,0,8,0,0,7,9}
-        }; // create and initialise a 2 dimensional array of 9 rows and 9 columns
+        };
 
         solution = SudokuSolver.solve(puzzle);
 
@@ -41,20 +41,20 @@ public class Board {
             return MoveResult.failure("Invalid move. Value must be between 1 and 9.");
         }
 
-        // TEMP set value
-        int old = grid[row][col].getValue();
+        int oldValue = grid[row][col].getValue();
         grid[row][col].setValue(value);
 
-        // Validate board
-        if (!Validator.validate(this).isValid()) {
-            grid[row][col].setValue(old); // rollback
-            return MoveResult.failure("Invalid move. Rule violation.");
+        ValidationResult validationResult = Validator.validate(this);
+        if (!validationResult.isValid()) {
+            grid[row][col].setValue(oldValue);
+            return MoveResult.failure("Invalid move. " + validationResult.getMessage());
         }
 
         return MoveResult.success("Move accepted.");
     }
+
     public MoveResult clear(int row, int col) {
-        if (!isInBounds(row, col)) {
+        if (row < 0 || row >= 9 || col < 0 || col >= 9) {
             return MoveResult.failure("Invalid cell.");
         }
 
@@ -66,27 +66,37 @@ public class Board {
         return MoveResult.success("Cell cleared.");
     }
 
-    private boolean isInBounds(int r, int c) {
-        return r >= 0 && r < 9 && c >= 0 && c < 9;
-    }
-
     private String toCellLabel(int row, int col) {
         return "" + (char) ('A' + row) + (col + 1);
     }
 
-    public int getValue(int r, int c) { return grid[r][c].getValue(); }
-
-    public void setValue(int r, int c, int val) { grid[r][c].setValue(val); }
-
-    public boolean isComplete() {
-        for (Cell[] row : grid)
-            for (Cell c : row)
-                if (c.getValue() == 0) return false;
-        return true;
+    public int getValue(int r, int c) {
+        return grid[r][c].getValue();
     }
 
-    public int[][] getSolution() { return solution; }
+    public void setValue(int r, int c, int val) {
+        grid[r][c].setValue(val);
+    }
 
+    public boolean isFixed(int r, int c) {
+        return grid[r][c].isFixed();
+    }
+
+    public int[][] getSolution() {
+        return solution;
+    }
+
+    public boolean isComplete() {
+        for (Cell[] row : grid) {
+            for (Cell c : row) {
+                if (c.getValue() == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+//    displaying the Sudoku grid
     public void print() {
         System.out.println("\n    1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < 9; i++) {

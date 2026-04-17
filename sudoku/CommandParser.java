@@ -2,8 +2,10 @@ package sudoku;
 
 public class CommandParser {
 
+//    Create an Enum
     public enum Type { MOVE, CLEAR, HINT, CHECK, INVALID }
 
+//    declare a static inner class Command
     public static class Command {
         private Type type;
         private int row, col, value;

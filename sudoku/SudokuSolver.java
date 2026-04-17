@@ -3,11 +3,11 @@ package sudoku;
 public class SudokuSolver {
 
     public static int[][] solve(int[][] board) {
-        int[][] copy = new int[9][9];
+        int[][] copy = new int[9][9]; // declare the size of the 2 dimensional array
         for (int i = 0; i < 9; i++)
-            System.arraycopy(board[i], 0, copy[i], 0, 9);
+            System.arraycopy(board[i], 0, copy[i], 0, 9); // make a copy of the 2 dimensional array
 
-        solveHelper(copy);
+        solveHelper(copy); // call the solveHelper method and pass the copy of the 2 dimensional array
         return copy;
     }
 
