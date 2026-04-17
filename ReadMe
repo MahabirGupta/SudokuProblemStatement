@@ -1,6 +1,6 @@
-How to Run (Mac)
-javac *.java
-java Main
+How to Run (Mac) on terminal
+go to project root and type
+java sudoku.Main
 
 
 For tests:

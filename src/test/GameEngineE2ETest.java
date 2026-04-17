@@ -1,8 +1,8 @@
 package src.test;
 
 import org.junit.Test;
-import src.main.java.GameEngine;
-import src.main.java.Validator;
+import sudoku.GameEngine;
+import sudoku.Validator;
 
 import static org.junit.Assert.*;
 

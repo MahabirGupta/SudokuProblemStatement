@@ -4,9 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import src.main.java.Board;
-import src.main.java.ValidationResult;
-import src.main.java.Validator;
+import sudoku.Board;
+import sudoku.ValidationResult;
+import sudoku.Validator;
 
 import java.util.Arrays;
 import java.util.Collection;
