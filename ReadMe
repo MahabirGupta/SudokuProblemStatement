@@ -3,8 +3,8 @@ go to project root and type
 java sudoku.Main
 
 
-For tests:
+For running tests:
+go to project root and type
+java -cp ".:lib/*" org.junit.runner.JUnitCore src.test.ValidatorParameterizedTest
+java -cp ".:lib/*" org.junit.runner.JUnitCore src.test.GameEngineE2ETest
 
-# add junit jar
-javac -cp .:junit-4.13.2.jar *.java
-java -cp .:junit-4.13.2.jar org.junit.runner.JUnitCore ValidatorTest
