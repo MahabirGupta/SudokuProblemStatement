@@ -3,7 +3,7 @@ package sudoku;
 public class Board {
 
     private final Cell[][] grid = new Cell[9][9];
-    private int[][] solution;
+    private int[][] solution; // create a 2 dimensional array
 
     public void initialize() {
         int[][] puzzle = {
@@ -16,7 +16,7 @@ public class Board {
                 {0,6,0,0,0,0,2,8,0},
                 {0,0,0,4,1,9,0,0,5},
                 {0,0,0,0,8,0,0,7,9}
-        };
+        }; // create and initialise a 2 dimensional array of 9 rows and 9 columns
 
         solution = SudokuSolver.solve(puzzle);
 

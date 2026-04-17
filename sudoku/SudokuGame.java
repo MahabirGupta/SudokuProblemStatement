@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class SudokuGame {
 
-    private final Board board = new Board();
+    private final Board board = new Board(); // create object for Board class and made it final so that no other objects can be created
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         System.out.println("Welcome to Sudoku!\n");
 
-        board.initialize();
+        board.initialize(); // call the initialize method in Board Class
         board.print();
 
         while (true) {
